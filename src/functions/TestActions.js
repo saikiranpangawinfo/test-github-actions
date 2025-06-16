@@ -25,12 +25,12 @@ app.http('httpTrigger1', {
                 const blockBlobClient = containerClient.getBlockBlobClient(filename);
                 await blockBlobClient.upload(content, Buffer.byteLength(content));
  
-                responseMessage = `File '${filename}' saved to Azure Blob Storage.`;
+                responseMessage = `File '${filename}' saved to Azure Blob Storage Success.`;
             } catch (error) {
                 context.log.error('Error uploading to Blob:', error);
                 return {
                     status: 500,
-                    body: `Error: ${error.message}`
+                    body: `Error : ${error.message}`
                 };
             }
         }
