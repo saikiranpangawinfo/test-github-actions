@@ -1,7 +1,10 @@
 name: Deploy Node.js project to Azure Function App
 
 on:
-  [push]
+  push:
+   branches:
+     -tst
+     -main
 
 env:
   AZURE_FUNCTIONAPP_NAME: 'FetchWebHookURL'   # set this to your function app name on Azure
@@ -10,7 +13,7 @@ env:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     environment: dev
     steps:
     - name: 'Checkout GitHub Action'
@@ -22,7 +25,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
 
     - name: 'Resolve Project Dependencies Using Npm'
-      shell: bash
+      shell: pwsh
       run: |
         pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
         npm install
